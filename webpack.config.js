@@ -2,32 +2,26 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
-  template: path.join(__dirname, './example/src/index.html'),
-  filename: 'index.html',
-});
-
 const base = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   devtool: 'cheap-module-source-map',
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      // ts-loader 用于加载解析 ts 文件
       {
         test: /\.(ts|tsx)?$/,
         loader: 'ts-loader',
         exclude: /node_modules/
       },
+      // 用于加载解析 less 文件
       {
         test: /\.less$/,
         use: [
-          {
-            loader: 'style-loader',
-          },
+          { loader: 'style-loader', },
           {
             loader: 'css-loader',
             options: {
@@ -36,16 +30,14 @@ const base = {
               },
             }
           },
-          {
-            loader: 'less-loader',
-          },
+          { loader: 'less-loader', },
         ]
       },
 
     ],
   },
   optimization: {
-    minimize: false,
+    minimize: true, // 开启代码压缩
   },
   // When importing a module whose path matches one of the following, just
   // assume a corresponding global variable exists and use that instead.
@@ -72,12 +64,13 @@ if (process.env.NODE_ENV === 'production') {
       library: 'laputarednerer',
       libraryTarget: 'umd',
     },
+    devtool: 'none',
     externals: {
       'react': 'react',
       'react-dom': 'react-dom'
     },
     plugins: [
-      new CleanWebpackPlugin(),
+      new CleanWebpackPlugin(), // 编译之前清空 /dist
     ],
   };
 } else {
@@ -91,7 +84,11 @@ if (process.env.NODE_ENV === 'production') {
       libraryTarget: 'umd',
     },
     plugins: [
-      htmlWebpackPlugin,
+      // 自动注入编译打包好的代码至 html
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, './example/src/index.html'),
+        filename: 'index.html',
+      }),
     ],
     devServer: {
       // port: 8008,
