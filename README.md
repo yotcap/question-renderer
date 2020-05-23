@@ -1,5 +1,9 @@
 # laputa-renderer
-习题渲染器
+
+![](https://img.shields.io/npm/v/laputa-renderer?style=flat-square)
+
+习题渲染器（可提交答案）
+
 
 ## 安装
 yarn
@@ -8,7 +12,11 @@ yarn
 npm
 > npm i laputa-renderer
 
+
 ## 使用
+
+> 关于习题的 mock 可查看：[mock.ts](./example/src/mock.ts)
+
 只展示
 ```js
 /**
@@ -52,3 +60,12 @@ const App: React.SFC<{}> = () => {
   )
 }
 ```
+
+## API
+
+| 参数      | 说明                               | 类型               |
+|----------|------------------------------------|--------------------|
+| renderer | 习题 form 的 ref，可用于触发提交答案   | Ref                |
+| schemas  | 习题的 schema，用于渲染习题           | TaskTestSchema[]   |
+| onSubmit | 提交答案的回调                       | Function(answers)  |
+
