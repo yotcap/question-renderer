@@ -3,7 +3,7 @@
  */
 import React, { useImperativeHandle } from 'react';
 import { useForm } from 'react-hook-form';
-import { TaskTestSchema, TaskTestSchemaOptions, AnswerItemType, AnswerType } from '../types';
+import { TaskTestSchema, TaskTestSchemaOptions, AnswerItemType } from '../types';
 import { getTestType, TEST_OPTIONS_PREFIX } from '../utils';
 import styles from './index.less';
 
@@ -16,7 +16,7 @@ interface TestRendererPropTypes {
   render?: any;
   schemas: TaskTestSchema[];
   onSubmit?: (answers: AnswerItemType[]) => void;
-};
+}
 
 /**
  * 错误提醒 template
@@ -36,79 +36,80 @@ const generateOptions = (test: TaskTestSchema, register: any, errors: any) => {
   const _itemName = `opts-${test.order}`;
 
   switch(test.type) {
-    // 单选
-    case 'radio':
-      return (
-        <div className={styles.optsBoxer}>
-          {
-            test.options!.map((item: TaskTestSchemaOptions) => (
-              <div key={`testitem-${item.order}`} className={styles.optItemBoxer}>
-                <span>
-                  <input
-                    type="radio"
-                    id={`radio-${test.order}-${item.order}`}
-                    name={_itemName}
-                    value={item.order}
-                    ref={register({ required: !test.optional })}
-                  />
-                </span>
-                <label htmlFor={`radio-${test.order}-${item.order}`} className={styles.optLabel}>
-                  {
-                    item.type === 'img' ?
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <span>{`${TEST_OPTIONS_PREFIX[item.order]}.\u00A0\u00A0`}</span>
-                        <img src={item.image} alt={`选项${item.order}`} />
-                      </div> :
-                      <span>{`${TEST_OPTIONS_PREFIX[item.order]}.\u00A0\u00A0${item.content}`}</span>
-                  }
-                </label>
-              </div>
-            ))
-          }
-          {errors[_itemName] && <Errors />}
-        </div>
-      );
+  // 单选
+  case 'radio':
+    return (
+      <div className={styles.optsBoxer}>
+        {
+          test.options?.map((item: TaskTestSchemaOptions) => (
+            <div key={`testitem-${item.order}`} className={styles.optItemBoxer}>
+              <span>
+                <input
+                  type="radio"
+                  id={`radio-${test.order}-${item.order}`}
+                  name={_itemName}
+                  value={item.order}
+                  ref={register({ required: !test.optional })}
+                />
+              </span>
+              <label htmlFor={`radio-${test.order}-${item.order}`} className={styles.optLabel}>
+                {
+                  item.type === 'img' ?
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <span>{`${TEST_OPTIONS_PREFIX[item.order]}.\u00A0\u00A0`}</span>
+                      <img src={item.image} alt={`选项${item.order}`} />
+                    </div> :
+                    <span>{`${TEST_OPTIONS_PREFIX[item.order]}.\u00A0\u00A0${item.content}`}</span>
+                }
+              </label>
+            </div>
+          ))
+        }
+        {errors[_itemName] && <Errors />}
+      </div>
+    );
     // 判断
-    case 'tof':
-      return (
-        <div className={styles.optsBoxer}>
-          {
-            test.options!.map((item: TaskTestSchemaOptions) => (
-              <div key={`testitem-${item.order}`} className={styles.optItemBoxer}>
-                <span>
-                  <input
-                    type="radio"
-                    id={`radio-${test.order}-${item.order}`}
-                    name={_itemName}
-                    value={item.order}
-                    ref={register({ required: !test.optional })}
-                  />
-                </span>
-                <label htmlFor={`radio-${test.order}-${item.order}`} className={styles.optLabel}>{item.content}</label>
-              </div>
-            ))
-          }
-          {errors[_itemName] && <Errors />}
-        </div>
-      );
+  case 'tof':
+    return (
+      <div className={styles.optsBoxer}>
+        {
+          test.options?.map((item: TaskTestSchemaOptions) => (
+            <div key={`testitem-${item.order}`} className={styles.optItemBoxer}>
+              <span>
+                <input
+                  type="radio"
+                  id={`radio-${test.order}-${item.order}`}
+                  name={_itemName}
+                  value={item.order}
+                  ref={register({ required: !test.optional })}
+                />
+              </span>
+              <label htmlFor={`radio-${test.order}-${item.order}`} className={styles.optLabel}>{item.content}</label>
+            </div>
+          ))
+        }
+        {errors[_itemName] && <Errors />}
+      </div>
+    );
     // 填空
-    case 'bf':
-      return (
-        <div className={styles.optsBoxer}>
-          <input
-            type="text"
-            name={_itemName}
-            ref={register({ required: !test.optional })}
-          />
-          {errors[_itemName] && <Errors />}
-        </div>
-      )
-    default:
-      return '';
+  case 'bf':
+    return (
+      <div className={styles.optsBoxer}>
+        <input
+          type="text"
+          name={_itemName}
+          ref={register({ required: !test.optional })}
+        />
+        {errors[_itemName] && <Errors />}
+      </div>
+    )
+  default:
+    return '';
   }
 };
 
-const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererPropTypes> = (props, ref: any) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererPropTypes> = (props: TestRendererPropTypes, _ref: any) => {
 
   const { register, handleSubmit, errors } = useForm<Inputs>();
   
@@ -117,7 +118,7 @@ const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererProp
       handleSubmit(data => {
         const _dataArr = Object.values(data);
         const _answers = props.schemas.map((_test: TaskTestSchema, index: number) => {
-          let _answer:AnswerItemType = {
+          const _answer:AnswerItemType = {
             type: 'options',
             content: _dataArr[index],
           };
@@ -125,7 +126,7 @@ const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererProp
           if (_test.type === 'bf') _answer.type = 'text';
           return _answer;
         });
-        props.onSubmit!(_answers);
+        props.onSubmit?.(_answers);
       })();
     },
   }));
@@ -149,6 +150,6 @@ const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererProp
   );
 };
 
-const TestRenderer = React.forwardRef<{}, TestRendererPropTypes>(InternalRenderer);
+const TestRenderer = React.forwardRef<any, TestRendererPropTypes>(InternalRenderer);
 
 export default TestRenderer;

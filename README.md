@@ -63,9 +63,9 @@ const App: React.SFC<{}> = () => {
 
 ## API
 
-| 参数      | 说明                               | 类型               |
-|----------|------------------------------------|--------------------|
-| renderer | 习题 form 的 ref，可用于触发提交答案   | Ref                |
-| schemas  | 习题的 schema，用于渲染习题           | TaskTestSchema[]   |
-| onSubmit | 提交答案的回调                       | Function(answers)  |
+| 参数      | 说明                               | 类型                                  |
+|----------|------------------------------------|--------------------------------------|
+| renderer | 习题 form 的 ref，可用于触发提交答案   | Ref                                  |
+| schemas  | 习题的 schema，用于渲染习题           | TaskTestSchema[]                     |
+| onSubmit | 提交答案的回调                       | Function(answers: AnswerItemType[])  |
 

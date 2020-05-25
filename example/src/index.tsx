@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import ReactDOM, { render } from 'react-dom';
+import { render } from 'react-dom';
 // import Renderer from '../../dist';
 import Renderer from '../../src/Renderer';
 import { RenderRef, AnswerItemType } from '../../src/types';
