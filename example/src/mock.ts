@@ -4,8 +4,7 @@ export const MOCK_SCHEMA: TaskTestSchema[] = [
   {
     order: 0,
     type: 'radio',
-    questions:
-      'Scraino中如果当前角色被其它角色遮挡住，可以使用下面（）积木将当前角色移动到舞台最上层。',
+    title: '<p>hellowor</p><p>wekljf</p><p>ldregerg</p>',
     options: [
       {
         order: 0,
@@ -18,7 +17,7 @@ export const MOCK_SCHEMA: TaskTestSchema[] = [
       {
         order: 2,
         type: 'img',
-        image: 'https://www.like-coding.com/laputa/0/0/1/cover.png',
+        image: 'https://avatars1.githubusercontent.com/u/24959547?s=400&u=ac1013649afdf6f1ad6c83af70cff5611a150cbf&v=4',
       },
       {
         order: 3,
@@ -29,7 +28,7 @@ export const MOCK_SCHEMA: TaskTestSchema[] = [
   {
     order: 1,
     type: 'tof',
-    questions: 'Scraino中关于选择结构（分支结构）的功能描述正确的是（）。',
+    title: '<p>看了电视剧弗兰克无</p><img src="https://avatars1.githubusercontent.com/u/24959547?s=460&u=ac1013649afdf6f1ad6c83af70cff5611a150cbf&v=4" alt="" /><p>机肥料空间</p>',
     optional: true,
     options: [
       {
@@ -45,6 +44,6 @@ export const MOCK_SCHEMA: TaskTestSchema[] = [
   {
     order: 2,
     type: 'bf',
-    questions: '卡位的痕迹____弗兰克文件才像',
+    title: '<p>看了电视____克无机肥料空间</p>',
   },
 ];

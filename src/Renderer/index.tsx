@@ -57,7 +57,7 @@ const generateOptions = (test: TaskTestSchema, register: any, errors: any) => {
                   item.type === 'img' ?
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <span>{`${TEST_OPTIONS_PREFIX[item.order]}.\u00A0\u00A0`}</span>
-                      <img src={item.image} alt={`选项${item.order}`} />
+                      <img src={item.image} alt={`选项${item.order+1}`} />
                     </div> :
                     <span>{`${TEST_OPTIONS_PREFIX[item.order]}.\u00A0\u00A0${item.content}`}</span>
                 }
@@ -139,7 +139,8 @@ const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererProp
             <div key={`test-${item.order}`} className={styles.itemBoxer}>
               <div className={styles.h1}>
                 {item.optional ? '' : (<span style={{color: 'red'}}>*</span>)}
-                {`  ${item.order+1}. (${getTestType(item.type)}) ${item.questions}`}
+                {`  ${item.order+1}. (${getTestType(item.type)})`}
+                <div dangerouslySetInnerHTML={{ __html: item.title }}></div>
               </div>
               <div>{generateOptions(item, register, errors)}</div>
             </div>

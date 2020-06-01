@@ -33,7 +33,9 @@ export interface AnswerItemType {
  * 选择题选项 item
  */
 export interface TaskTestSchemaOptions {
-  /** 次序 */
+  /**
+   * 次序
+   */
   order: number;
   /**
    * 选项类型
@@ -41,9 +43,13 @@ export interface TaskTestSchemaOptions {
    *    img: 图片
    */
   type?: string;
-  /** 当选项为文字时有值 */
+  /**
+   * 当选项为文字时有值
+   */
   content?: string;
-  /** 当类型为 img 时有值 */
+  /**
+   * 当类型为 img 时有值
+   */
   image?: string;
 }
 
@@ -51,15 +57,25 @@ export interface TaskTestSchemaOptions {
  * 习题 item
  */
 export interface TaskTestSchema {
-  /** 次序 */
+  /**
+   * 次序
+   */
   order: number;
   type: TaskTestType;
-  /** 问题 */
-  questions: string;
-  /** 是否为选做题 */
+  /**
+   * 问题题目
+   */
+  title: string;
+  /**
+   * 是否为选做题
+   */
   optional?: boolean;
-  /** 选项 - 可选 - 当type为单选、 */
+  /**
+   * 选项 - 可选
+   */
   options?: TaskTestSchemaOptions[];
-  /** 答案 */
+  /**
+   * 答案
+   */
   answer?: AnswerItemType;
 }
