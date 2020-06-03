@@ -138,9 +138,9 @@ const InternalRenderer: React.ForwardRefRenderFunction<unknown, TestRendererProp
           props.schemas.map((item: TaskTestSchema) => (
             <div key={`test-${item.order}`} className={styles.itemBoxer}>
               <div className={styles.h1}>
-                {item.optional ? '' : (<span style={{color: 'red'}}>*</span>)}
+                <span style={{ width: '.6rem', display: 'inline-block', color: 'red'}}>{item.optional ? '' : '*'}</span>
                 {`  ${item.order+1}. (${getTestType(item.type)})`}
-                <div dangerouslySetInnerHTML={{ __html: item.title }}></div>
+                <div className={styles.title} dangerouslySetInnerHTML={{ __html: item.title }}></div>
               </div>
               <div>{generateOptions(item, register, errors)}</div>
             </div>

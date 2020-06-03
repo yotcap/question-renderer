@@ -4,7 +4,7 @@ export const MOCK_SCHEMA: TaskTestSchema[] = [
   {
     order: 0,
     type: 'radio',
-    title: '<p>hellowor</p><p>wekljf</p><p>ldregerg</p>',
+    title: '<p>hello</p><div class="media-wrap image-wrap"><img src="https://avatars1.githubusercontent.com/u/24959547?s=400&u=ac1013649afdf6f1ad6c83af70cff5611a150cbf&v=4"/></div><p>图中有几个长方形</p>',
     options: [
       {
         order: 0,
